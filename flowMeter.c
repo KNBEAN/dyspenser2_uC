@@ -70,6 +70,6 @@ ISR(TIMER1_COMPA_vect)
 //przerwanie generowane w celu pomiaru przeplywu
 {
 	newSample = true;
-	volume += TCNT0*2;
+	volume += TCNT0*3;
 	TCNT0 = 0;
 }

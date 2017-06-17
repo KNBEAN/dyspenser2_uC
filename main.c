@@ -19,8 +19,8 @@
 #include <util/delay.h>
 
 
-char recivedBuffer[64]; 
-char buffor2[64];
+char recivedBuffer[16]; 
+char transicverBuffer[16];
 
 //prototypy funkcji statycznych
 
@@ -56,16 +56,16 @@ static void init(void){
 
 static void startWater(uint16_t volume){
 	uint16_t currentVolume = 0;
-	sprintf(buffor2, "%d", currentVolume);
-	sendLine(buffor2);
+	sprintf(transicverBuffer, "%d", currentVolume);
+	sendLine(transicverBuffer);
 	flowMeter_Start();
 	valveOpen();
 	while(currentVolume < volume){
 	
 		if(flowMeter_isNew() == true){
 			currentVolume = flowMeter_getVolume();
-			sprintf(buffor2, "%d", currentVolume);
-			sendLine(buffor2);
+			sprintf(transicverBuffer, "%d", currentVolume);
+			sendLine(transicverBuffer);
 		}
 		
 		if (recivedNewLine() == true)
